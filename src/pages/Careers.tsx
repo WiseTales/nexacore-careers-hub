@@ -135,15 +135,6 @@ const Careers = () => {
         </div>
       </section>
 
-      {/* Application Modal */}
-      <ApplicationModal
-        job={selectedJob}
-        isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          setSelectedJob(null);
-        }}
-      />
     </Layout>
   );
 };
