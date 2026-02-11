@@ -1,18 +1,17 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Search, Briefcase } from "lucide-react";
 import Layout from "@/components/Layout";
 import JobCard from "@/components/JobCard";
-import ApplicationModal from "@/components/ApplicationModal";
 import { fetchJobsFromHireloom, type Job } from "@/lib/hireloom-api";
 
 const Careers = () => {
+  const navigate = useNavigate();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("All");
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const loadJobs = async () => {
@@ -40,10 +39,8 @@ const Careers = () => {
   });
 
   const handleApply = (job: Job) => {
-    setSelectedJob(job);
-    setIsModalOpen(true);
+    navigate(`/careers/${job.companySlug || "nexacore"}/${job.id}`);
   };
-
   return (
     <Layout>
       {/* Hero */}
@@ -138,15 +135,6 @@ const Careers = () => {
         </div>
       </section>
 
-      {/* Application Modal */}
-      <ApplicationModal
-        job={selectedJob}
-        isOpen={isModalOpen}
-        onClose={() => {
-          setIsModalOpen(false);
-          setSelectedJob(null);
-        }}
-      />
     </Layout>
   );
 };
