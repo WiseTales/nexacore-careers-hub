@@ -39,7 +39,8 @@ const Careers = () => {
   });
 
   const handleApply = (job: Job) => {
-    navigate(`/careers/${job.companySlug || "nexacore"}/${job.id}`);
+    const url = `${(import.meta as any).env?.VITE_HIRELOOM_BASE_URL || "https://hireloom-official.vercel.app"}/company/${job.companySlug || "nexacore"}/${job.id}`;
+    window.open(url, "_blank");
   };
   return (
     <Layout>
@@ -83,11 +84,10 @@ const Careers = () => {
                 <button
                   key={dept}
                   onClick={() => setSelectedDepartment(dept)}
-                  className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${
-                    selectedDepartment === dept
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-card border text-muted-foreground hover:text-foreground"
-                  }`}
+                  className={`px-4 py-2.5 rounded-lg text-sm font-medium transition-colors ${selectedDepartment === dept
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-card border text-muted-foreground hover:text-foreground"
+                    }`}
                 >
                   {dept}
                 </button>
@@ -114,6 +114,12 @@ const Careers = () => {
                 </div>
               ))}
             </div>
+          ) : jobs.length === 0 ? (
+            <div className="text-center py-20 border-2 border-dashed rounded-xl border-muted/20">
+              <Briefcase className="mx-auto mb-4 text-muted-foreground/40" size={48} />
+              <p className="text-xl font-medium text-foreground">No open positions at the moment.</p>
+              <p className="text-muted-foreground mt-2">Check back later or follow our updates.</p>
+            </div>
           ) : filteredJobs.length > 0 ? (
             <div className="space-y-4">
               {filteredJobs.map((job, index) => (
@@ -134,9 +140,9 @@ const Careers = () => {
           )}
         </div>
       </section>
-
     </Layout>
   );
 };
 
 export default Careers;
+

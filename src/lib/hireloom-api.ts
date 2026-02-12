@@ -1,3 +1,7 @@
+// Hireloom Integration Configuration
+const HIRELOOM_URL = (import.meta as any).env?.VITE_HIRELOOM_BASE_URL || "https://hireloom-official.vercel.app";
+const COMPANY_SLUG = "nexacore";
+
 export interface Job {
   id: string;
   title: string;
@@ -12,62 +16,48 @@ export interface Job {
   status: "published" | "draft" | "closed";
 }
 
-// Default company slug for NexaCore
-const COMPANY_SLUG = "nexacore";
-
 /**
- * Note: We are using process.env as requested. 
- * For Vite environments, you may need to define process.env in vite.config.ts 
- * or use import.meta.env.VITE_HIRELOOM_BASE_URL.
+ * Fetch published jobs specifically for Nexacore from Hireloom.
+ * New simplified endpoint: /api/jobs/[companySlug]
  */
-const getBaseUrl = () => {
-  // Try to get from process.env (Next.js style) or import.meta.env (Vite style)
-  const url = (typeof process !== 'undefined' && process.env?.NEXT_PUBLIC_HIRELOOM_BASE_URL) || 
-              (import.meta as any).env?.VITE_HIRELOOM_BASE_URL || 
-              "https://api.hireloom.app";
-  return url.replace(/\/$/, ""); // Remove trailing slash if any
-};
-
-// Fetch published jobs from Hireloom public API
 export const fetchJobsFromHireloom = async (): Promise<Job[]> => {
-  const baseUrl = getBaseUrl();
-  const url = `${baseUrl}/api/public/jobs?companySlug=${COMPANY_SLUG}`;
-  
+  const url = `${HIRELOOM_URL}/api/jobs/${COMPANY_SLUG}`;
+
   try {
     const res = await fetch(url);
     if (!res.ok) {
       throw new Error(`Failed to fetch jobs: ${res.statusText}`);
     }
     const data = await res.json();
-    // Assuming Hireloom returns { jobs: Job[] } or a direct array
     return Array.isArray(data) ? data : data.jobs || [];
   } catch (error) {
-    console.error("Hireloom API Error:", error);
+    console.error("Hireloom Fetch Error:", error);
     return [];
   }
 };
 
-// Fetch a single job by ID
+/**
+ * Fetch a single job by ID (Optional, kept for internal details if needed)
+ */
 export const fetchJobById = async (jobId: string): Promise<Job | null> => {
-  const baseUrl = getBaseUrl();
-  const url = `${baseUrl}/api/public/jobs/${jobId}`;
+  const url = `${HIRELOOM_URL}/api/jobs/details/${jobId}`; // Simplified pattern
 
   try {
     const res = await fetch(url);
-    if (!res.ok) {
-      if (res.status === 404) return null;
-      throw new Error(`Failed to fetch job details: ${res.statusText}`);
-    }
+    if (!res.ok) return null;
     return await res.json();
   } catch (error) {
-    console.error("Hireloom API Error:", error);
+    console.error("Hireloom Job Details Error:", error);
     return null;
   }
 };
 
-// Build the Hireloom-hosted apply URL
+/**
+ * Build the Hireloom redirect URL for application.
+ * New pattern: /company/[companySlug]/[jobId]
+ */
 export const getApplyUrl = (companySlug: string, jobId: string): string => {
-  const baseUrl = getBaseUrl();
-  return `${baseUrl}/apply/${companySlug}/${jobId}`;
+  return `${HIRELOOM_URL}/company/${companySlug}/${jobId}`;
 };
+
 
