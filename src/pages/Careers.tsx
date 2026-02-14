@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Search, Briefcase } from "lucide-react";
 import Layout from "@/components/Layout";
 import JobCard from "@/components/JobCard";
-import { fetchJobsFromHireloom, type Job } from "@/lib/hireloom-api";
+import { fetchJobsFromHireloom, getApplyUrl, type Job } from "@/lib/hireloom-api";
 
 const Careers = () => {
   const navigate = useNavigate();
@@ -39,7 +39,7 @@ const Careers = () => {
   });
 
   const handleApply = (job: Job) => {
-    const url = `${(import.meta as any).env?.VITE_HIRELOOM_BASE_URL || "https://hireloom-official.vercel.app"}/company/${job.companySlug || "nexacore"}/${job.id}`;
+    const url = getApplyUrl(job.companySlug || "nexacore", job.id);
     window.open(url, "_blank");
   };
   return (

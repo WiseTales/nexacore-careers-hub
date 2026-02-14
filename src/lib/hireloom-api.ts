@@ -17,21 +17,19 @@ export interface Job {
 }
 
 /**
- * Fetch published jobs specifically for Nexacore from Hireloom.
- * New simplified endpoint: /api/jobs/[companySlug]
+ * Fetch published jobs specifically for Nexacore from local API proxy.
+ * This avoids CORS by using a server-side route.
  */
 export const fetchJobsFromHireloom = async (): Promise<Job[]> => {
-  const url = `${HIRELOOM_URL}/api/jobs/${COMPANY_SLUG}`;
-
   try {
-    const res = await fetch(url);
+    const res = await fetch("/api/hireloom-jobs");
     if (!res.ok) {
       throw new Error(`Failed to fetch jobs: ${res.statusText}`);
     }
     const data = await res.json();
     return Array.isArray(data) ? data : data.jobs || [];
   } catch (error) {
-    console.error("Hireloom Fetch Error:", error);
+    console.error("Hireloom Proxy Fetch Error:", error);
     return [];
   }
 };
