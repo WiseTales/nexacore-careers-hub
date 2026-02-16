@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   try {
     const response = await fetch(
-      "https://hireloom-official.vercel.app/api/public/jobs/nexacore"
+      "https://hireloom1234.vercel.app/api/public/jobs/nexacore"
     );
     const data = await response.json();
     return res.status(200).json(data);

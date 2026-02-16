@@ -10,6 +10,7 @@ const Careers = () => {
   const navigate = useNavigate();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDepartment, setSelectedDepartment] = useState("All");
 
@@ -20,6 +21,7 @@ const Careers = () => {
         setJobs(data);
       } catch (error) {
         console.error("Failed to fetch jobs:", error);
+        setError(true);
       } finally {
         setLoading(false);
       }
@@ -105,19 +107,16 @@ const Careers = () => {
 
           {/* Job List */}
           {loading ? (
-            <div className="space-y-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="nexacore-card p-6 animate-pulse">
-                  <div className="h-4 bg-secondary rounded w-1/4 mb-3" />
-                  <div className="h-6 bg-secondary rounded w-1/2 mb-2" />
-                  <div className="h-4 bg-secondary rounded w-3/4" />
-                </div>
-              ))}
+            <div className="flex justify-center items-center py-20">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          ) : error ? (
+            <div className="text-center py-20">
+              <p className="text-destructive font-medium">Failed to fetch jobs. Please try again later.</p>
             </div>
           ) : jobs.length === 0 ? (
             <div className="text-center py-20 border-2 border-dashed rounded-xl border-muted/20">
-              <Briefcase className="mx-auto mb-4 text-muted-foreground/40" size={48} />
-              <p className="text-xl font-medium text-foreground">No open positions at the moment.</p>
+              <p className="text-xl font-medium text-foreground">No positions available.</p>
               <p className="text-muted-foreground mt-2">Check back later or follow our updates.</p>
             </div>
           ) : filteredJobs.length > 0 ? (
