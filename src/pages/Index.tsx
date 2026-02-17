@@ -53,7 +53,7 @@ const Index = () => {
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
               <a
-                href="https://nexacore.hireloom1234.com/careers"
+                href="https://hireloom1234.vercel.app/careers/nexacore"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
               >
                 Apply Now
@@ -119,7 +119,7 @@ const Index = () => {
               Explore our current opportunities and start your journey with NexaCore.
             </p>
             <a
-              href="https://nexacore.hireloom1234.com/careers"
+              href="https://hireloom1234.vercel.app/careers/nexacore"
               className="relative z-10 inline-flex items-center gap-2 mt-8 px-7 py-3.5 rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
             >
               Apply Now
