@@ -38,6 +38,8 @@ const Footer = () => {
               <li>
                 <a
                   href="https://hireloom1234.vercel.app/careers/nexacore"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-background/60 hover:text-background text-sm transition-colors duration-200"
                 >
                   Careers

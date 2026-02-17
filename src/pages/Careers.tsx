@@ -47,6 +47,8 @@ const Careers = () => {
             </p>
             <a
               href="https://hireloom1234.vercel.app/careers/nexacore"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-lg font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-all duration-200 shadow-lg shadow-primary/25"
             >
               Apply Now

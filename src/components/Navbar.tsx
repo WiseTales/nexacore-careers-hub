@@ -48,6 +48,8 @@ const Navbar = () => {
           <div className="hidden md:block">
             <a
               href="https://hireloom1234.vercel.app/careers/nexacore"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center px-5 py-2.5 rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity duration-200"
             >
               Apply Now
@@ -91,6 +93,8 @@ const Navbar = () => {
               ))}
               <a
                 href="https://hireloom1234.vercel.app/careers/nexacore"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsOpen(false)}
                 className="block mt-2 px-4 py-3 rounded-lg text-sm font-semibold bg-primary text-primary-foreground text-center"
               >
