@@ -40,10 +40,6 @@ const Index = () => {
             transition={{ duration: 0.6 }}
             className="max-w-2xl"
           >
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-primary/20 text-primary-foreground/80 border border-primary/30 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-              Now Hiring — 6 Open Positions
-            </span>
 
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-background leading-tight">
               Join NexaCore —{" "}
@@ -56,13 +52,13 @@ const Index = () => {
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-4">
-              <Link
-                to="/careers"
+              <a
+                href="https://nexacore.hireloom1234.com/careers"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
               >
-                See Open Positions
+                Apply Now
                 <ArrowRight size={16} />
-              </Link>
+              </a>
               <Link
                 to="/about"
                 className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg text-sm font-semibold border border-background/20 text-background/90 hover:bg-background/10 transition-colors"
@@ -120,15 +116,15 @@ const Index = () => {
               Ready to Build the Future?
             </h2>
             <p className="mt-4 text-background/70 max-w-lg mx-auto relative z-10">
-              Explore our open positions and find where your skills can make the biggest impact.
+              Explore our current opportunities and start your journey with NexaCore.
             </p>
-            <Link
-              to="/careers"
+            <a
+              href="https://nexacore.hireloom1234.com/careers"
               className="relative z-10 inline-flex items-center gap-2 mt-8 px-7 py-3.5 rounded-lg text-sm font-semibold bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
             >
-              View Careers
+              Apply Now
               <ArrowRight size={16} />
-            </Link>
+            </a>
           </div>
         </div>
       </section>

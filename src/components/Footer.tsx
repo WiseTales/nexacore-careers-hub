@@ -25,16 +25,29 @@ const Footer = () => {
               Company
             </h4>
             <ul className="space-y-3">
-              {["Home", "About", "Careers", "Contact"].map((item) => (
-                <li key={item}>
-                  <Link
-                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="text-background/60 hover:text-background text-sm transition-colors duration-200"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link to="/" className="text-background/60 hover:text-background text-sm transition-colors duration-200">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/about" className="text-background/60 hover:text-background text-sm transition-colors duration-200">
+                  About
+                </Link>
+              </li>
+              <li>
+                <a
+                  href="https://nexacore.hireloom1234.com/careers"
+                  className="text-background/60 hover:text-background text-sm transition-colors duration-200"
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
+                <Link to="/contact" className="text-background/60 hover:text-background text-sm transition-colors duration-200">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
