@@ -89,15 +89,13 @@ const Navbar = () => {
                   {item.label}
                 </Link>
               ))}
-              <a
-                href="https://hireloom1234.vercel.app/careers/nexacore"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/careers"
                 onClick={() => setIsOpen(false)}
                 className="block mt-2 px-4 py-3 rounded-lg text-sm font-semibold bg-primary text-primary-foreground text-center"
               >
-                Apply Now
-              </a>
+                View Openings
+              </Link>
             </div>
           </motion.div>
         )}
