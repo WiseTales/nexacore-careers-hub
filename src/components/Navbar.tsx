@@ -3,10 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const CAREERS_URL = "https://hireloom1234.vercel.app/careers/nexacore";
+
 const navItems = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
-  { label: "Careers", path: "/careers" },
+  { label: "Careers", path: CAREERS_URL, external: true },
   { label: "Contact", path: "/contact" },
 ];
 
